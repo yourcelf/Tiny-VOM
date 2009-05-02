@@ -1,6 +1,28 @@
 ;
-; tiny R 45 -- OHM only version
+; tiny R 45 -- OHM only version, using Volt jumper and sourcing from common,
+; with VCC reference
 ; for Tiny-VOM 45 board
+;
+; This version works with test probes plugged into the Voltage side (ADC2).
+; This code pulls the "common" pin high, and relies on the microcontroller to
+; source current for the voltage divider.
+;
+; How to calculate resistance values:
+;
+; Read the two ADC values -- the high and low byte.
+; The following python function does the calculation, where:
+;   high => the high byte
+;   low => the low byte
+;   R => the value of the pull-down resistor (probably 1M)
+;   VCC => VCC value.
+;
+; def ohms(high, low, R, VCC):
+;     vout = (high * 256 + low) / 1024. * VCC
+;     return (VCC - vout) * R / vout
+;
+; This version can work with very high resistances -- up to 1000M, if you use a
+; 1M pull-down resistor.  However, its resolution at low resistances is very
+; low, and the lowest resistance it can distinguish is 1K.
 ;
 
 ;.include "tn45def.inc"
@@ -101,17 +123,17 @@ reset:
     ; init ADC
     ;
 
-    ; common pin output low (sink)
+    ; common pin output high (source)
     sbi DDRB, c_adc_pin
-    cbi PORTB, c_adc_pin
+    sbi PORTB, c_adc_pin
     ; ohm read pin input low
     cbi DDRB, r_adc_pin
     cbi PORTB, r_adc_pin
     ; voltage read pin input low
     cbi DDRB, v_adc_pin
     cbi PORTB, v_adc_pin
-    ; ADMUX: Select ADC3, set to 2.56V internal reference
-    ldi temp, 0b10010011
+    ; ADMUX: Select ADC2, set to VCC reference
+    ldi temp, 0b00000010
     out ADMUX, temp
     ; ADCSRB: Set unipolar, non-inverse.
     ldi temp, 0b00000000
