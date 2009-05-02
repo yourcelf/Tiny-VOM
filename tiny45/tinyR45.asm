@@ -1,5 +1,6 @@
 ;
-; Tiny-VOM 45
+; tiny R 45 -- OHM only version
+; for Tiny-VOM 45 board
 ;
 
 ;.include "tn45def.inc"
@@ -100,7 +101,7 @@ reset:
     ; init ADC
     ;
 
-    ; common pin output low
+    ; common pin output low (sink)
     sbi DDRB, c_adc_pin
     cbi PORTB, c_adc_pin
     ; ohm read pin input low
@@ -109,8 +110,8 @@ reset:
     ; voltage read pin input low
     cbi DDRB, v_adc_pin
     cbi PORTB, v_adc_pin
-    ; ADMUX: Select ADC2, set to 2.56V internal reference
-    ldi temp, 0b10010010
+    ; ADMUX: Select ADC3, set to 2.56V internal reference
+    ldi temp, 0b10010011
     out ADMUX, temp
     ; ADCSRB: Set unipolar, non-inverse.
     ldi temp, 0b00000000
