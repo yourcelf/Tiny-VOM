@@ -1,6 +1,9 @@
-Tiny VOM is a AVR microcontroller based volt-ohm meter.
+Tiny VOM is an AVR microcontroller based volt and ohm meter.
 
-Thanks for downloading this package.  This circuit and accompanying code is designed
+You can download these files individually or as a zip or tar file without creating
+an account.  
+
+This circuit and accompanying code is designed
 as a "hello world" stub but can be made and used stand-alone.  You are encouraged to
 cut and paste the code and functionality into larger circuits in the AVR family.
 
