@@ -1,1 +1,22 @@
 Tiny VOM is a AVR microcontroller based volt-ohm meter.
+
+Thanks for downloading this package.  This circuit and accompanying code is designed
+as a "hello world" stub but can be made and used stand-alone.  You are encouraged to
+cut and paste the code and functionality into larger circuits in the AVR family.
+
+If you make changes or additions and would like to add your modifications to the tree,
+please send a message to the user "yourcelf" via github, or email cfd@mit.edu to be
+added as a collaborator.  Get a github ID first and tell him what that is.
+
+If you have difficulty with the public key, go to your "account", and click
+on "need help with public key".  You'll want to scroll down to find instructions to
+make a config file for ssh for your operating system.  After you try this and you're
+really stuck, you can try emailing Charlie (that's cfd, above) for help.  The business
+with the keys makes it much better to be doing this on your own machine rather than
+a shared public computer.  If this presents a big problem, mail Charlie to see
+what work arounds he might have thought of since this writing.
+
+Once you have your github ID and public key all set, go back to the shared repository.
+To clone the entire repository, use:
+
+git clone git@github.com:yourcelf/Tiny-VOM.git
